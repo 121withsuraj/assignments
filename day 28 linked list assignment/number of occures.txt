@@ -1,0 +1,45 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+int count = 0;
+ 
+
+void push(struct Node** head_ref, int new_data)
+{
+    
+struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+    new_node->data = new_data;
+    new_node->next = (*head_ref);
+    (*head_ref) = new_node;
+}
+
+int countkey(struct Node* head, int key)
+{
+    if (head == NULL)
+        return count;
+    if (head->data == key)
+        count++;
+    return countkey(head->next, key);
+}
+ 
+int main()
+{
+
+    struct Node* head = NULL;
+    push(&head, 10);
+    push(&head, 20);
+    push(&head, 30);
+    push(&head, 40);
+    push(&head, 10);
+    push(&head, 5);
+    push(&head, 10);
+ 
+    
+    std::cout << "count of 10 is " << countkey(head, 10);
+    return 0;
+}
